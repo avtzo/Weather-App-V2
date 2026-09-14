@@ -46,6 +46,7 @@ A modern, responsive Weather Application built with **Vanilla JavaScript (ES6+)*
 git clone https://github.com/avtzo/Weather-App-V2.git
 ```
 2. Configure your API Key:
-  Open script.js and replace the placeholder API key inside the getWeatherData function with your actual key.
-3. Run the Application:
-Open index.html directly in any web browser, or launch it using VS Code's Live Server extension.
+>Open script.js and replace the placeholder API key inside the getWeatherData function with your actual key.
+
+4. Run the Application:
+>Open index.html directly in any web browser, or launch it using VS Code's Live Server extension.
