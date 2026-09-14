@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App V2</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/7ee5f2ba27.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="app-layout">
+        <div class="search-box">
+            <h1 id="app-name">Weather App v2</h1>
+            <div class="search-bar">
+                <input type="text" id="user-input" placeholder="Search a Location">
+                <button type="button" id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </div>
+
+        <div class="weather-screen hidden">
+            <div class="weather-screen-layout">
+                <div class="current-weather">
+                    <div class="current-weather-header">
+                        <h1 id="city-name"></h1>
+                        <p id="current-date"></p>
+                        <p><i class="fa-solid fa-location-dot"></i><span id="current-location"></span></p>
+                    </div>
+                    <div class="current-weather-main">
+                        <img src="" alt="" id="weather-icon">
+                        <h2 id="current-temp"></h2>
+                        <p id="weather-state"></p>
+                    </div>
+                </div>
+                <div class="weather-forecast">
+                    <p>HUMIDITY: <span id="humidity"></span></p>
+                    <p>WIND SPEED: <span id="wind-speed"></span></p>
+                    <p>UV: <span id="uv"></span></p>
+                    <h1>3 Day Forecast</h1>
+                    <div class="forecast-days">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="error-screen hidden">
+            <div class="error-screen-layout">
+                <img src="images/error_img.png" alt="Error Image">
+                <h1>You have been <span>STRUCK</span> by an Error :(</h1>
+                <p>Check for a Typo or Try again later</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
