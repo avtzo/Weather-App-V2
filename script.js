@@ -49,7 +49,14 @@ function getWeatherState(weatherStateCode) {
 
 async function displayWeather(cityName) {
     userInput.value = "";
+
+    showLoading();
+
+    await new Promise(resolve => setTimeout(resolve, 3000));
+
     const weatherData = await getWeatherData(cityName);
+    hideLoading();
+
     if (!weatherData) {
         weatherScreen.classList.add("hidden");
         errorScreen.classList.remove("hidden");
@@ -58,6 +65,7 @@ async function displayWeather(cityName) {
         errorScreen.classList.add("hidden");
         weatherScreen.classList.remove("hidden");
     }
+
     const cityLocationFormat = `${weatherData.location.region}, ${weatherData.location.country}`;
     cityNameHeader.textContent = weatherData.location.name;
     currentDate.textContent = weatherData.forecast.forecastday[0].date;
@@ -70,6 +78,7 @@ async function displayWeather(cityName) {
     windSpeed.textContent = `${weatherData.current.gust_kph}km/h`;
     uv.textContent = weatherData.current.uv;
     forecastContainer.innerHTML = "";
+
     for (let i = 0; i < 3; i++) {
         const forecastBox = document.createElement("div");
         forecastBox.classList.add("forecast-box");
@@ -85,7 +94,16 @@ async function displayWeather(cityName) {
     }
     console.log(weatherData);
 
-    const bgWeatherState = getWeatherState(weatherData.current.condition.code);    
+    const bgWeatherState = getWeatherState(weatherData.current.condition.code);   
+    
+    searchBoxH1.style.display = "none";
+    searchBox.style.position = "relative";
+    searchBox.style.top = window.matchMedia("(min-width: 769px)").matches ? "-100px" : "0";
+    searchBox.style.padding = "0";
+    searchBox.style.background = "transparent";
+    searchBox.style.backdropFilter = "none";
+    searchBox.style.border = "none";
+
     switch(bgWeatherState) {
         case "thunder": {
             document.body.style.backgroundImage = `url(images/thunder.jpg)`;
@@ -97,6 +115,7 @@ async function displayWeather(cityName) {
         }
         case "rainy": {
             document.body.style.backgroundImage = `url(images/rainy.jpg)`;
+            searchBox.style.backdropFilter = "blur(10px)";
             break;
         }
         case "snowy": {
@@ -108,13 +127,6 @@ async function displayWeather(cityName) {
         }
     }
 
-    searchBoxH1.style.display = "none";
-    searchBox.style.position = "relative";
-    searchBox.style.top = window.matchMedia("(min-width: 769px)").matches ? "-100px" : "0";
-    searchBox.style.padding = "0";
-    searchBox.style.background = "transparent";
-    searchBox.style.backdropFilter = "none";
-    searchBox.style.border = "none";
 }
 
 searchBtn.addEventListener("click", () => {
@@ -126,8 +138,26 @@ searchBtn.addEventListener("click", () => {
     displayWeather(userInput.value);
 });
 
-document.addEventListener("keypress", (e) => {    
+userInput.addEventListener("keydown", (e) => {    
     if (e.key === "Enter") {
         searchBtn.click();
     }
 });
+
+const skeletonElements = [cityNameHeader, weatherState, currentTemp, weatherIcon, currentDate, cityLocation, humidity, windSpeed, uv];
+
+function showLoading() {
+    skeletonElements.forEach(el => el.classList.add("skeleton"));
+
+    forecastContainer.innerHTML = "";
+    for (let i = 0; i < 3; i++) {
+        const skeletonBox = document.createElement("div");
+        skeletonBox.classList.add("forecast-box", "skeleton");
+        skeletonBox.style.height = "100px";
+        forecastContainer.appendChild(skeletonBox);
+    }
+}
+
+function hideLoading() {
+    skeletonElements.forEach(el => el.classList.remove("skeleton"));
+}
