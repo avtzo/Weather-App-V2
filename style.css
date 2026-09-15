@@ -77,6 +77,10 @@ img.skeleton {
     padding: 10px;
 }
 
+#user-input {
+    text-transform: capitalize;
+}
+
 .search-box {
     outline: none;
     border-radius: 20px;

@@ -19,7 +19,7 @@ const uv = document.getElementById("uv");
 const forecastContainer = document.querySelector(".forecast-days");
 
 async function getWeatherData(cityName) {
-    const apiKey = "" // Your API Key Here
+    const apiKey = ""; // Your API Key Here
     const cleanCityName = cityName.toLowerCase().trim();
     const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${cleanCityName}&days=3&aqi=no&alerts=no`;
     let data = null;
@@ -51,7 +51,6 @@ async function displayWeather(cityName) {
     userInput.value = "";
 
     showLoading();
-
     const weatherData = await getWeatherData(cityName);
     hideLoading();
     
