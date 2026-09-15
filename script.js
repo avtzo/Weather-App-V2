@@ -52,10 +52,16 @@ async function displayWeather(cityName) {
 
     showLoading();
 
-    await new Promise(resolve => setTimeout(resolve, 3000));
-
     const weatherData = await getWeatherData(cityName);
     hideLoading();
+    
+    searchBoxH1.style.display = "none";
+    searchBox.style.position = "relative";
+    searchBox.style.top = "0";
+    searchBox.style.padding = "0";
+    searchBox.style.background = "transparent";
+    searchBox.style.backdropFilter = "none";
+    searchBox.style.border = "none";
 
     if (!weatherData) {
         weatherScreen.classList.add("hidden");
@@ -96,13 +102,6 @@ async function displayWeather(cityName) {
 
     const bgWeatherState = getWeatherState(weatherData.current.condition.code);   
     
-    searchBoxH1.style.display = "none";
-    searchBox.style.position = "relative";
-    searchBox.style.top = window.matchMedia("(min-width: 769px)").matches ? "-100px" : "0";
-    searchBox.style.padding = "0";
-    searchBox.style.background = "transparent";
-    searchBox.style.backdropFilter = "none";
-    searchBox.style.border = "none";
 
     switch(bgWeatherState) {
         case "thunder": {

@@ -270,6 +270,7 @@ img.skeleton {
     margin-bottom: 10px;
     transition: 0.2s;
     opacity: 0; 
+    width: 100px;
     animation: slideIn 0.5s ease-out forwards;
 }
 
@@ -301,7 +302,7 @@ img.skeleton {
         0 8px 32px 0 rgba(0, 0, 0, 0.3),
         inset 0 0 12px 0 rgba(255, 255, 255, 0.15);
     border-radius: 15px;
-    width: 90vw;
+    width: auto;
     text-align: center;
     padding: 10px;
     animation: scaleIn 0.5s ease forwards;
@@ -402,9 +403,11 @@ img.skeleton {
         height: auto;
         margin: auto;
     }
+
     .forecast-box {
         width: 100px;
     }
+
     .error-screen-layout {
         margin-top: 50px;
     }
